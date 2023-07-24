@@ -18,6 +18,10 @@ class MessagePage extends Component
 
     public $selectedTV = 0;
 
+    public bool $success = false;
+
+    public bool $sending = false;
+
     public function mount()
     {
         if (! empty(config('nexxaitvs'))) {
@@ -32,6 +36,8 @@ class MessagePage extends Component
     {
         $this->validate();
 
+        $this->sending = true;
+
         $selectedTV = $this->tvList[$this->selectedTV];
         $messenger->setTVIP($selectedTV['ip']);
         $messenger->setTVKey($selectedTV['key']);
@@ -41,6 +47,8 @@ class MessagePage extends Component
                 $messenger->send($this->messageToSend);
             }
             $this->messageToSend = '';
+            $this->success = true;
+            $this->sending = false;
         } catch (Exception $e) {
             $this->errorWhenSending = $e->getMessage();
         }

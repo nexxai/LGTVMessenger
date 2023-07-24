@@ -13,14 +13,20 @@
             </select>
         </div>
 
-        <div class="mb-20 space-y-4">
+        <div class="mb-12 space-y-4">
             <span class="block text-xl text-slate-400">Enter text to send to TV</span>
             <input wire:model.defer="messageToSend" name="messageToSend"
-                class="w-full px-3 py-2 text-3xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 active:ring-2 active:ring-green-600 active:ring-offset-4 active:ring-offset-slate-800 focus:ring-2 focus:ring-green-600 focus:ring-offset-4 focus:ring-offset-slate-800 focus:outline-0"
-                placeholder="e.g. Lili is awake" />
+                class="w-full px-3 py-2 text-3xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 active:ring-2 active:ring-green-600 active:ring-offset-4 active:ring-offset-slate-800 focus:ring-2 focus:ring-green-600 focus:ring-offset-4 focus:ring-offset-slate-800 focus:outline-0 disabled:bg-slate-300 disabled:text-slate-600"
+                {{ $sending ?? 'disabled' }} placeholder="e.g. Lili is awake" />
             @error('messageToSend') <div x-data="{ show: true }" x-show="show"
-                x-init="setTimeout(() => show = false, 3000)" class="block text-lg text-red-400 alert">{{ $message }}
+                x-init="setTimeout(() => show = false, 5000)" class="block text-lg text-red-400 alert">{{ $message }}
             </div>@enderror
+            @if ($success)
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                class="block text-lg text-blue-400 alert">
+                Message sent!
+            </div>
+            @endif
         </div>
 
         <div class="mb-20 space-y-4">

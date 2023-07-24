@@ -31,9 +31,15 @@ class LGTVMessenger
             throw new Exception('No message provided');
         }
 
-        Process::run('python -m pip install -r requirements.txt');
+        if (! strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $exec = 'python';
+        } else {
+            $exec = 'python3';
+        }
 
-        $sendMessage = Process::run("python message.py -t {$this->ip} -m \"{$message}\" -k {$this->key}");
+        Process::run("{$exec} -m pip install -r requirements.txt");
+
+        $sendMessage = Process::run("{$exec} message.py -t {$this->ip} -m \"{$message}\" -k {$this->key}");
 
         return $sendMessage->output();
     }
