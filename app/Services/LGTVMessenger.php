@@ -33,7 +33,7 @@ class LGTVMessenger
 
         Process::run('python -m pip install -r requirements.txt');
 
-        $sendMessage = Process::run("python message.py -t {$this->ip} -m '{$message}' -k {$this->key}");
+        $sendMessage = Process::run("python message.py -t {$this->ip} -m \"{$message}\" -k {$this->key}");
 
         return $sendMessage->output();
     }
