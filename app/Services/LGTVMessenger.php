@@ -31,9 +31,9 @@ class LGTVMessenger
             throw new Exception('No message provided');
         }
 
-        Process::run('python3 -m pip install -r requirements.txt');
+        Process::run('python -m pip install -r requirements.txt');
 
-        $sendMessage = Process::run("python3 message.py -t {$this->ip} -m '{$message}' -k {$this->key}");
+        $sendMessage = Process::run("python message.py -t {$this->ip} -m '{$message}' -k {$this->key}");
 
         return $sendMessage->output();
     }
