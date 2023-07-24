@@ -4,6 +4,11 @@
 
 Have you ever needed to send a message to someone in another room of your house who was watching TV with headphones on but wasn't great at checking their phone?  Or maybe you just want to annoy the everliving crap out of your spouse?  Then this app might be for you.  Run it on a server in your house, connect to it from your phone, and have fun spamming your friends and family for years to come!
 
+### Example
+
+![Screenshot of message at the bottom of an LG webOS TV](resources/images/screenshot.jpg)
+
+
 ### Notes
 
 - This service *must* be run on the same network as the TVs you wish to message.  You cannot run this on a remote service like a droplet or AWS.
