@@ -1,6 +1,7 @@
 <div class="max-w-2xl px-4 py-2 mx-auto mt-16 mb-4 lg:px-2 font-space-grotesk">
-    <div class="mb-16 text-6xl font-semibold text-slate-200">
-        TV Messenger
+    <div class="flex items-center mb-16 text-6xl font-semibold text-slate-200">
+        <img src="/smart-tv.png" alt="Image of a TV" class="w-12 h-12 mr-8" />
+        <div>TV Messenger</div>
     </div>
 
     @if (! empty($tvList))

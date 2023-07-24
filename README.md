@@ -36,3 +36,7 @@ If you ever need to add another TV to the list, you can run `php artisan lg:add`
 ## Contributing
 
 All PRs are welcome and very much appreciated.  I whipped this together in a single evening, so there will *definitely* be places where this code could be improved.
+
+## Credits
+
+App icon by [Freepik - Flaticon](https://www.flaticon.com/free-icons/smart-tv)
