@@ -18,4 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /config/nexxaitvs.php
+/config/lgtvs.php
 /public/aiowebostv/__pycache__
