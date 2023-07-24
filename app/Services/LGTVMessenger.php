@@ -37,6 +37,6 @@ class LGTVMessenger
 
         $sendMessage = Process::run("{$exec} message.py -t {$this->ip} -m \"{$message}\" -k {$this->key}");
 
-        return $sendMessage->output();
+        return $sendMessage->errorOutput();
     }
 }
