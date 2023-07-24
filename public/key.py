@@ -15,7 +15,7 @@ async def main():
     client = WebOsClient(args.target, None)
     await client.connect()
 
-    print(f"TV_KEY={client.client_key}")
+    print(f"{client.client_key}")
 
     await client.disconnect()
 
