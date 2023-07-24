@@ -33,10 +33,6 @@ class MessagePage extends Component
 
     public function sendMessage(LGTVMessenger $messenger)
     {
-        if (empty($this->tvList)) {
-            return;
-        }
-
         $this->validate();
 
         $this->sending = true;
@@ -70,5 +66,6 @@ class MessagePage extends Component
     protected $rules = [
         'messageToSend' => 'required|string|min:2',
         'sendNumOfTimes' => 'required|min:1|max:5|integer',
+        'tvList' => 'required',
     ];
 }
