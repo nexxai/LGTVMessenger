@@ -16,7 +16,7 @@ class MessagePage extends Component
 
     public int $sendNumOfTimes = 1;
 
-    public $selectedTV;
+    public $selectedTV = 0;
 
     public function mount()
     {
