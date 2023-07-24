@@ -31,7 +31,7 @@ class LGTVMessenger
             throw new Exception('No message provided');
         }
 
-        if (! strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $exec = 'python';
         } else {
             $exec = 'python3';
