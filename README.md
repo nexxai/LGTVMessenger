@@ -32,3 +32,7 @@ This app requires PHP, NodeJS *and* Python.  You must have the following version
 4. Point your web server's root directory to the `/public` folder in this distribution.
 
 If you ever need to add another TV to the list, you can run `php artisan lg:add` and follow the prompts
+
+## Contributing
+
+All PRs are welcome and very much appreciated.  I whipped this together in a single evening, so there will *definitely* be places where this code could be improved.

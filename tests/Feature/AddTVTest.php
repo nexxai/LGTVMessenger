@@ -25,10 +25,11 @@ class AddTVTest extends TestCase
         $this->keyName = 'TV_KEY';
         $this->name = 'Example';
         $this->config_path = base_path().'/config/lgtvs.php';
-
         $this->config_backup_path = $this->config_path.'.'.md5(now()).'.bak';
 
-        copy($this->config_path, $this->config_backup_path);
+        if (file_exists($this->config_path)) {
+            copy($this->config_path, $this->config_backup_path);
+        }
 
         $instance = [
             'ip' => $this->ip,

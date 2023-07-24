@@ -2,6 +2,8 @@
     <div class="mb-16 text-6xl font-semibold text-slate-200">
         TV Messenger
     </div>
+
+    @if (! empty($tvList))
     <form wire:submit.prevent="sendMessage">
         <div class="mb-12 space-y-4">
             <span class="block text-xl text-slate-400">Choose device</span>
@@ -57,4 +59,13 @@
         @error('messageToSend') <span class="block text-lg text-red-400 alert">{{ $errorWhenSending }}</span>@enderror
 
     </form>
+    @else
+    <div class="mb-12 space-y-4">
+        <span class="block text-xl text-red-500">No TVs configured</span>
+        <div class="block text-xl text-slate-400">Please run
+            <pre class="inline ml-4 mr-4 text-slate-200">php artisan lg:first-time</pre> from the command-line to
+            configure your first TV
+        </div>
+    </div>
+    @endif
 </div>

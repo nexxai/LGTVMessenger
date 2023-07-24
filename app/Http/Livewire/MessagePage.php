@@ -24,11 +24,19 @@ class MessagePage extends Component
 
     public function mount()
     {
-        $this->tvList = config('lgtvs');
+        $tvs = config('lgtvs');
+
+        if (! empty($tvs)) {
+            $this->tvList = $tvs;
+        }
     }
 
     public function sendMessage(LGTVMessenger $messenger)
     {
+        if (empty($this->tvList)) {
+            return;
+        }
+
         $this->validate();
 
         $this->sending = true;
