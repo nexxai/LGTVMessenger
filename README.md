@@ -1,5 +1,7 @@
 # LGTVMessenger
 
+![Run Tests](https://github.com/nexxai/LGTVMessenger/actions/workflows/RunTests.yml/badge.svg) [![codecov](https://codecov.io/gh/nexxai/LGTVMessenger/branch/main/graph/badge.svg?token=OYkZZnFyKc)](https://codecov.io/gh/nexxai/LGTVMessenger)
+
 ## What in the...
 
 Have you ever needed to send a message to someone in another room of your house who was watching TV with headphones on but wasn't great at checking their phone?  Or maybe you just want to annoy the everliving crap out of your spouse?  Then this app might be for you.  Run it on a server in your house, connect to it from your phone, and have fun spamming your friends and family for years to come!
