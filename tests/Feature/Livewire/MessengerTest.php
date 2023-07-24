@@ -117,4 +117,12 @@ class MessengerTest extends TestCase
             ->send('Good message')
             ->twice();
     }
+
+    #[Test]
+    public function it_can_set_the_number_of_times_to_send_a_message(): void
+    {
+        Livewire::test(MessagePage::class)
+            ->call('sendTimes', 4)
+            ->assertSet('sendNumOfTimes', 4);
+    }
 }
