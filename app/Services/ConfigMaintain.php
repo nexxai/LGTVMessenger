@@ -25,7 +25,10 @@ class ConfigMaintain
 
     public function add($instance)
     {
-        $config = include $this->config_base_path;
+        $config = [];
+        if (file_exists($this->config_base_path)) {
+            $config = include $this->config_base_path;
+        }
 
         $config[] = $instance;
         $newConfig = "<?php\n\nreturn ".$this->better_var_export($config).';';
@@ -38,7 +41,6 @@ class ConfigMaintain
         $export = preg_replace('/^([ ]*)(.*)/m', '$1$1$2', $export);
         $array = preg_split("/\r\n|\n|\r/", $export);
         $array = preg_replace(["/\s*array\s\($/", "/\)(,)?$/", "/\s=>\s$/"], [null, ']$1', ' => ['], $array);
-        $array = preg_replace('/\'env\(([A-Z_]*)\)\'/', 'env(\'$1\')', $array);
         $export = implode(PHP_EOL, array_filter(['['] + $array));
 
         return $export;

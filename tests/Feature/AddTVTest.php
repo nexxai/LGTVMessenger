@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\Process;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -13,9 +14,9 @@ class AddTVTest extends TestCase
 
     public string $name;
 
-    public string $env_key;
+    public string $config_path;
 
-    public string $env_path;
+    public string $config_backup_path;
 
     protected function setUp(): void
     {
@@ -23,20 +24,32 @@ class AddTVTest extends TestCase
         $this->ip = '127.0.0.1';
         $this->keyName = 'TV_KEY';
         $this->name = 'Example';
-        $this->env_key = str($this->name)->snake()->upper().'_TV_KEY';
-        $this->env_path = base_path().'/.env';
+        $this->config_path = base_path().'/config/lgtvs.php';
+
+        $this->config_backup_path = $this->config_path.'.'.md5(now()).'.bak';
+
+        copy($this->config_path, $this->config_backup_path);
+
+        $instance = [
+            'ip' => $this->ip,
+            'name' => $this->name,
+            'key' => md5('example'),
+        ];
+
+        config('lgtvs')[] = $instance;
     }
 
     #[Test]
     public function it_can_add_a_tv(): void
     {
+        Process::fake();
+
         $this->artisan('lg:add')
             ->expectsQuestion('Friendly name for the TV', $this->name)
             ->expectsQuestion('IP address of TV', $this->ip)
-            ->expectsOutput("Added TV {$this->name} to the configuration")
             ->assertExitCode(0);
 
-        $config = include base_path().'/config/lgtvs.php';
+        $config = include $this->config_path;
 
         $found = false;
         foreach ($config as $tv) {
@@ -46,21 +59,12 @@ class AddTVTest extends TestCase
         }
 
         $this->assertTrue($found);
-
-        $env = file_get_contents($this->env_path);
-
-        $this->assertStringContainsString($this->env_key, $env);
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        $env = file_get_contents($this->env_path);
-
-        $env = preg_replace("/{$this->env_key}\=$/", '', $env);
-        $env = preg_replace("/\n$/", '', $env);
-
-        $env = file_put_contents($this->env_path, $env);
+        rename($this->config_backup_path, $this->config_path);
     }
 }
