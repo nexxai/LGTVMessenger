@@ -19,7 +19,7 @@ Have you ever needed to send a message to someone in another room of your house 
 
 ### Notes
 
-- This service *must* be run on the same network as the TVs you wish to message.  You cannot run this on a remote service like a droplet or AWS.
+- This service *must* be run on the same network as the TVs you wish to message.  You cannot run this on a remote service like a droplet or AWS, unless you have a permanent VPN between the two sites.
 - If you decide to expose this service to the world (e.g. via some kind of port forward), be aware that anyone who accesses the page will have unfettered access to the bottom of your TVs forever.  If you absolutely must expose it to the internet, use something like a Cloudflare tunnel and then create a Cloudflare Access application, and only allow certain email addresses to browse to it (this is an exercise left up to the reader; PRs for better documentation are greatly appreciated.)
 
 ## Requirements
