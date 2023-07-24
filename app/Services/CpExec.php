@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-class PythonExec
+class CpExec
 {
     public static function handle(): string
     {
         $os = OS::detect();
 
-        if($os == OS::WINDOWS) {
-            return 'python';
+        if ($os == OS::WINDOWS) {
+            return 'copy';
         } else {
-            return 'python3';
+            return 'cp';
         }
     }
 }

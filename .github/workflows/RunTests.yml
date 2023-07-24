@@ -55,5 +55,6 @@ jobs:
         run: |
           cp .env.example .env
           php -v
+          php artisan key:generate
           ./vendor/bin/pest --parallel --coverage-clover=coverage.xml
           bash <(curl -s https://codecov.io/bash) || echo 'Codecov failed to upload'

@@ -24,12 +24,7 @@ class MessagePage extends Component
 
     public function mount()
     {
-        if (! empty(config('nexxaitvs'))) {
-            $tvs = array_merge(config('lgtvs'), config('nexxaitvs'));
-        } else {
-            $tvs = config('lgtvs');
-        }
-        $this->tvList = $tvs;
+        $this->tvList = config('lgtvs');
     }
 
     public function sendMessage(LGTVMessenger $messenger)

@@ -2,7 +2,7 @@
 
 ## What in the...
 
-Have you ever needed to send a message to someone in another room of your house who was watching TV with headphones on but wasn't great at checking their phone?  Then this app might be for you.  Run this app on a server in your house, connect to it from your phone, and have fun spamming your friends and family!
+Have you ever needed to send a message to someone in another room of your house who was watching TV with headphones on but wasn't great at checking their phone?  Or maybe you just want to annoy the everliving crap out of your spouse?  Then this app might be for you.  Run it on a server in your house, connect to it from your phone, and have fun spamming your friends and family for years to come!
 
 ### Notes
 
@@ -22,6 +22,8 @@ This app requires PHP, NodeJS *and* Python.  You must have the following version
 ## Instructions
 
 1. Run `composer install`, `npm install`, and `npm run build`
-2. Copy the `.env.example` file in the root directory to a file called `.env`, and update the `APP_URL` fields to appropriate values
-3. Get the client key from your TV by running `php artisan lg:add` and following the instructions
+2. Run `php artisan lg:first-time`
+3. Open the newly created `.env` file, and update the `APP_URL` fields to appropriate values
 4. Point your web server's root directory to the `/public` folder in this distribution.
+
+If you ever need to add another TV to the list, you can run `php artisan lg:add` and follow the prompts

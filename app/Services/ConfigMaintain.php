@@ -4,23 +4,35 @@ namespace App\Services;
 
 class ConfigMaintain
 {
-    public function add($instance, $env_line)
+    public string $config_base_path;
+
+    public function __construct()
     {
-        $config_path = base_path().'/config/lgtvs.php';
-        $env_path = base_path().'/.env';
-
-        $config = include $config_path;
-        $env = file_get_contents($env_path);
-
-        $config[] = $instance;
-        $newConfig = "<?php\n\nreturn ".$this->varexport($config).';';
-        file_put_contents($config_path, $newConfig);
-
-        $env = $env."\n".$env_line;
-        file_put_contents($env_path, $env);
+        $this->config_base_path = base_path().'/config/lgtvs.php';
     }
 
-    protected function varexport($expression)
+    public function create_lgtvs_file(): void
+    {
+        $empty_config_file = <<< 'PHP'
+        <?php
+
+        return [
+        ];
+        PHP;
+
+        file_put_contents($this->config_base_path, $empty_config_file);
+    }
+
+    public function add($instance)
+    {
+        $config = include $this->config_base_path;
+
+        $config[] = $instance;
+        $newConfig = "<?php\n\nreturn ".$this->better_var_export($config).';';
+        file_put_contents($this->config_base_path, $newConfig);
+    }
+
+    protected function better_var_export($expression)
     {
         $export = var_export($expression, true);
         $export = preg_replace('/^([ ]*)(.*)/m', '$1$1$2', $export);

@@ -20,35 +20,33 @@ class AddTVKeyToConfig extends Command
     {
         $name = $this->ask('Friendly name for the TV');
         $ip = $this->ask('IP address of TV');
-        $exec = PythonExec::get();
 
+        $this->components->info('Attempting to pair with TV');
+
+        $exec = PythonExec::handle();
         $key = Process::timeout(120)->start("{$exec} public/key.py -t {$ip}");
 
         $counter = 0;
         while ($key->running()) {
             if ($counter % 5 == 0) {
-                $this->warn('You must accept the prompt on screen to pair this app with the TV.');
+                $this->components->warn('You must accept the prompt on screen to pair this app with the TV.');
             }
 
             sleep(1);
             $counter++;
         }
 
-        $key_name = str($name)->snake()->upper().'_TV_KEY';
-        $client_key = $key->output();
-
-        $env_line = $key_name.'='.$client_key;
+        $client_key = trim($key->output());
 
         $tvInstance = [
             'name' => $name,
-            'key' => "env({$key_name})",
+            'key' => $client_key,
             'ip' => $ip,
         ];
 
         $config = new ConfigMaintain();
-        $config->add($tvInstance, $env_line);
+        $config->add($tvInstance);
 
-        $this->newLine();
-        $this->info("Added TV {$name} to the configuration");
+        $this->components->info("Added TV '{$name}' to the configuration");
     }
 }

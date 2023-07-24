@@ -31,7 +31,7 @@ class LGTVMessenger
             throw new Exception('No message provided');
         }
 
-        $exec = PythonExec::get();
+        $exec = PythonExec::handle();
 
         Process::run("{$exec} -m pip install -r requirements.txt");
 
