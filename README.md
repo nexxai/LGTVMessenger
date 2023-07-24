@@ -4,7 +4,13 @@
 
 Have you ever needed to send a message to someone in another room of your house who was watching TV with headphones on but wasn't great at checking their phone?  Or maybe you just want to annoy the everliving crap out of your spouse?  Then this app might be for you.  Run it on a server in your house, connect to it from your phone, and have fun spamming your friends and family for years to come!
 
-### Example
+
+## What it looks like
+### Interface
+
+![Screenshot of the app interface](resources/images/interface.png)
+
+### Result
 
 ![Screenshot of message at the bottom of an LG webOS TV](resources/images/screenshot.jpg)
 
