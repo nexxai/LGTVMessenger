@@ -23,12 +23,18 @@ Have you ever needed to send a message to someone in another room of your house 
 
 ## Instructions
 
+### The first time
+
 1. Run `composer install`, `npm install`, and `npm run build`
 2. Run `php artisan lg:first-time`
 3. Open the newly created `.env` file, and update the `APP_URL` fields to appropriate values
 4. Point your web server's root directory to the `/public` folder in this distribution.
 
 If you ever need to add another TV to the list, you can run `php artisan lg:add` and follow the prompts
+
+### Updating
+
+Just run `php artisan lg:update` and that will pull the latest version of the repo down, along with rebuilding all of the JS/CSS assets.
 
 ## Precanned Messages
 
