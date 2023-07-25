@@ -56,6 +56,10 @@ This app requires PHP, NodeJS *and* Python.  You must have the following version
 
 All PRs are welcome and very much appreciated.  I whipped this together in a single evening, so there will *definitely* be places where this code could be improved.  Criticisms will be accepted when provided with proof of a $10 donation to your local food bank.
 
+## Test
+
+`php artisan test`
+
 ## Credits
 
 App icon by [Freepik - Flaticon](https://www.flaticon.com/free-icons/smart-tv)
