@@ -14,6 +14,7 @@ class UpdateService extends Command
     public function handle()
     {
         Process::run('git pull');
+        Process::run('composer update');
         Process::run('npm run build');
     }
 }

@@ -24,7 +24,7 @@ class GeneralUsageTest extends TestCase
             ->set('messageToSend', 'Example')
             ->set('tvList', $tv)
             ->set('sendNumOfTimes', 1)
-            ->set('selectedTV', '0')
+            ->set('selectedTVIndex', '0')
             ->call('sendMessage')
             ->assertSee('TV not available')
             ->assertSee('Could not send message');

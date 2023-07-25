@@ -30,6 +30,8 @@ class MessengerTest extends TestCase
     #[Test]
     public function a_user_can_visit_the_home_page(): void
     {
+        config()->set('lgtvs', $this->tvList);
+
         $this->get('/')
             ->assertOk();
     }
@@ -45,6 +47,8 @@ class MessengerTest extends TestCase
     #[Test]
     public function if_a_message_is_not_set_an_validation_error_is_returned(): void
     {
+        config()->set('lgtvs', $this->tvList);
+
         Livewire::test(MessagePage::class)
             ->set('messageToSend', '')
             ->call('sendMessage')
@@ -52,7 +56,7 @@ class MessengerTest extends TestCase
 
         Livewire::test(MessagePage::class)
             ->set('messageToSend', 'This is a good message')
-            ->set('selectedTV', 0)
+            ->set('selectedTVIndex', 0)
             ->call('sendMessage')
             ->assertHasNoErrors('messageToSend');
     }
@@ -61,6 +65,8 @@ class MessengerTest extends TestCase
     ]
     public function a_message_can_only_be_sent_between_one_and_five_times(): void
     {
+        config()->set('lgtvs', $this->tvList);
+
         Livewire::test(MessagePage::class)
             ->set('messageToSend', 'This is a good message')
             ->set('sendNumOfTimes', 0)
@@ -76,7 +82,7 @@ class MessengerTest extends TestCase
         Livewire::test(MessagePage::class)
             ->set('messageToSend', 'This is a good message')
             ->set('sendNumOfTimes', 1)
-            ->set('selectedTV', 0)
+            ->set('selectedTVIndex', 0)
             ->call('sendMessage')
             ->assertHasNoErrors('sendNumOfTimes');
     }
@@ -94,6 +100,9 @@ class MessengerTest extends TestCase
                 ->once()
                 ->shouldReceive()
                 ->setTVKey('abcd')
+                ->once()
+                ->shouldReceive()
+                ->send('Good message')
                 ->once();
         });
 
@@ -101,7 +110,7 @@ class MessengerTest extends TestCase
         $test->messageToSend = 'Good message';
         $test->sendNumOfTimes = 1;
         $test->tvList = $this->tvList;
-        $test->selectedTV = 0;
+        $test->selectedTVIndex = 0;
         $test->host_alive = true;
 
         $test->sendMessage($mock);
@@ -127,7 +136,7 @@ class MessengerTest extends TestCase
         $test->messageToSend = 'Good message';
         $test->sendNumOfTimes = 2;
         $test->tvList = $this->tvList;
-        $test->selectedTV = 0;
+        $test->selectedTVIndex = 0;
         $test->host_alive = true;
 
         $test->sendMessage($mock);

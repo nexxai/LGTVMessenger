@@ -24,7 +24,6 @@ class LGTVMessenger
 
     public function ping()
     {
-        dump($this->isHostAlive($this->ip));
         return $this->isHostAlive($this->ip);
     }
 
@@ -50,7 +49,7 @@ class LGTVMessenger
     private function isHostAlive($ip): bool
     {
         $ping = new Ping($ip);
-        $ping->setTimeout(4);
+        $ping->setTimeout(1);
 
         return (bool) $ping->ping(true);
     }

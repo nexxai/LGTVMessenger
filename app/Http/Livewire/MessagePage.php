@@ -23,14 +23,14 @@ class MessagePage extends Component
 
     public $precanned = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->getTVs();
 
         $this->getPrecannedMessages();
     }
 
-    public function sendMessage(LGTVMessenger $messenger)
+    public function sendMessage(LGTVMessenger $messenger): void
     {
         $this->validate();
 
@@ -47,12 +47,12 @@ class MessagePage extends Component
         $this->sending = false;
     }
 
-    public function reset_tv_alive_status()
+    public function reset_tv_alive_status(): void
     {
         $this->tv_alive = true;
     }
 
-    public function sendTimes(int $numOfTimes)
+    public function sendTimes(int $numOfTimes): void
     {
         $this->sendNumOfTimes = $numOfTimes;
     }
@@ -121,8 +121,10 @@ class MessagePage extends Component
      */
     public function configureMessenger(LGTVMessenger $messenger): void
     {
-        $selectedTV = $this->tvList[$this->selectedTVIndex];
-        $messenger->setTVIP($selectedTV['ip']);
-        $messenger->setTVKey($selectedTV['key']);
+        if (isset($this->selectedTVIndex)) {
+            $selectedTV = $this->tvList[$this->selectedTVIndex];
+            $messenger->setTVIP($selectedTV['ip']);
+            $messenger->setTVKey($selectedTV['key']);
+        }
     }
 }
