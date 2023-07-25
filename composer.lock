@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7bb7401fbb374befbec3e968bd164c3",
+    "content-hash": "8120ce0c12ee966ad74a33d10f19cc69",
     "packages": [
         {
             "name": "brick/math",
@@ -504,6 +504,52 @@
             "time": "2022-02-20T15:07:15+00:00"
         },
         {
+            "name": "geerlingguy/ping",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nexxai/Ping.git",
+                "reference": "5655079496c9ffc2aaef0037e0445a882be25942"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nexxai/Ping/zipball/5655079496c9ffc2aaef0037e0445a882be25942",
+                "reference": "5655079496c9ffc2aaef0037e0445a882be25942",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "JJG/Ping.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Geerling",
+                    "email": "jeff@jeffgeerling.com"
+                }
+            ],
+            "description": "A PHP class to ping hosts.",
+            "support": {
+                "source": "https://github.com/nexxai/Ping/tree/1.x"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/geerlingguy"
+                },
+                {
+                    "type": "patreon",
+                    "url": "https://www.patreon.com/geerlingguy"
+                }
+            ],
+            "time": "2023-07-25T20:38:44+00:00"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.1",
             "source": {
@@ -976,16 +1022,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.15.0",
+            "version": "v10.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c7599dc92e04532824bafbd226c2936ce6a905b8"
+                "reference": "7589f09fe0e8735615cf25f0f1807682aac124c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c7599dc92e04532824bafbd226c2936ce6a905b8",
-                "reference": "c7599dc92e04532824bafbd226c2936ce6a905b8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7589f09fe0e8735615cf25f0f1807682aac124c1",
+                "reference": "7589f09fe0e8735615cf25f0f1807682aac124c1",
                 "shasum": ""
             },
             "require": {
@@ -1172,7 +1218,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-07-11T13:43:52+00:00"
+            "time": "2023-07-25T14:31:32+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1242,16 +1288,16 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37"
+                "reference": "e5a3057a5591e1cfe8183034b0203921abe2c902"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
-                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/e5a3057a5591e1cfe8183034b0203921abe2c902",
+                "reference": "e5a3057a5591e1cfe8183034b0203921abe2c902",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1344,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2023-01-30T18:31:20+00:00"
+            "time": "2023-07-14T13:56:28+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6406,16 +6452,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.9.4",
+            "version": "v2.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f"
+                "reference": "be41181b435ce3d99d01be0d6c1e2602f153b82b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f",
-                "reference": "705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/be41181b435ce3d99d01be0d6c1e2602f153b82b",
+                "reference": "be41181b435ce3d99d01be0d6c1e2602f153b82b",
                 "shasum": ""
             },
             "require": {
@@ -6423,7 +6469,7 @@
                 "nunomaduro/collision": "^7.7.0",
                 "nunomaduro/termwind": "^1.15.1",
                 "pestphp/pest-plugin": "^2.0.1",
-                "pestphp/pest-plugin-arch": "^2.2.2",
+                "pestphp/pest-plugin-arch": "^2.2.3",
                 "php": "^8.1.0",
                 "phpunit/phpunit": "^10.2.6"
             },
@@ -6491,7 +6537,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.9.4"
+                "source": "https://github.com/pestphp/pest/tree/v2.9.5"
             },
             "funding": [
                 {
@@ -6503,7 +6549,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-22T14:42:37+00:00"
+            "time": "2023-07-24T18:13:17+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -6576,16 +6622,16 @@
         },
         {
             "name": "pestphp/pest-plugin-arch",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest-plugin-arch.git",
-                "reference": "733d5c396484c7518c53f02ffb88cf2e2f31b97d"
+                "reference": "f44834b728b44028fb7d99c4e3efc88b699728a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest-plugin-arch/zipball/733d5c396484c7518c53f02ffb88cf2e2f31b97d",
-                "reference": "733d5c396484c7518c53f02ffb88cf2e2f31b97d",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-arch/zipball/f44834b728b44028fb7d99c4e3efc88b699728a8",
+                "reference": "f44834b728b44028fb7d99c4e3efc88b699728a8",
                 "shasum": ""
             },
             "require": {
@@ -6595,7 +6641,7 @@
                 "ta-tikoma/phpunit-architecture-test": "^0.7.3"
             },
             "require-dev": {
-                "pestphp/pest": "dev-develop as 2.6.2",
+                "pestphp/pest": "^2.9.4",
                 "pestphp/pest-dev-tools": "^2.12.0"
             },
             "type": "library",
@@ -6624,7 +6670,7 @@
                 "unit"
             ],
             "support": {
-                "source": "https://github.com/pestphp/pest-plugin-arch/tree/v2.2.2"
+                "source": "https://github.com/pestphp/pest-plugin-arch/tree/v2.2.3"
             },
             "funding": [
                 {
@@ -6636,7 +6682,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-08T12:39:42+00:00"
+            "time": "2023-07-24T18:04:14+00:00"
         },
         {
             "name": "pestphp/pest-plugin-laravel",
@@ -6988,16 +7034,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0"
+                "reference": "a2b24135c35852b348894320d47b3902a94bc494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/65c39594fbd8c67abfc68bb323f86447bab79cc0",
-                "reference": "65c39594fbd8c67abfc68bb323f86447bab79cc0",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/a2b24135c35852b348894320d47b3902a94bc494",
+                "reference": "a2b24135c35852b348894320d47b3902a94bc494",
                 "shasum": ""
             },
             "require": {
@@ -7029,9 +7075,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.22.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.23.0"
             },
-            "time": "2023-06-29T20:46:06+00:00"
+            "time": "2023-07-23T22:17:56+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -8855,7 +8901,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "geerlingguy/ping": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

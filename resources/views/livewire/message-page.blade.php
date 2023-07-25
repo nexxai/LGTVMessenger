@@ -7,8 +7,8 @@
     @if (! empty($tvList))
     <form wire:submit.prevent="sendMessage">
         <div class="mb-12 space-y-4">
-            <span class="block text-xl text-slate-400">Choose device</span>
-            <select wire:model="selectedTV"
+            <label class="block text-xl text-slate-400" for="tv">Choose device</label>
+            <select wire:model="selectedTVIndex" id="tv"
                 class="w-full px-2 py-2 mb-4 text-3xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 focus:outline-0">
                 @foreach ($tvList as $key => $val)
                 <option value="{{ $key }}">{{ $val['name'] }}</option>
@@ -18,39 +18,45 @@
 
         @if ($this->precanned)
         <div class="mb-12 space-y-4 precanned">
-            <span class="block text-xl text-slate-400">Choose a saved message to send</span>
-            <select wire:model="messageToSend"
+            <label for="precanned" class="block text-xl text-slate-400">Choose a saved message to send</label>
+            <select wire:model="messageToSend" id="precanned"
                 class="w-full px-2 py-2 mb-4 text-2xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 focus:outline-0">
-                <option selected="true" value="">Select a precanned message</option>
+                <option selected value="">Select a precanned message</option>
                 @foreach ($precanned as $key => $val)
                 <option value="{{ $val }}">{{ $val }}</option>
                 @endforeach
             </select>
-            @error('precanned') <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
-                class="block text-lg text-red-400 alert">{{ $message }}
-            </div>@enderror
+            @error('precanned')
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                class="block mb-12 text-lg text-red-400">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         @endif
 
         <div class="mb-12 space-y-4">
-            <span class="block text-xl text-slate-400">Enter text to send to TV</span>
-            <input wire:model.defer="messageToSend" name="messageToSend"
+            <label for="messageToSend" class="block text-xl text-slate-400">Enter text to send to TV</label>
+            <input wire:model.defer="messageToSend" id="messageToSend"
                 class="w-full px-3 py-2 text-3xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 active:ring-2 active:ring-green-600 active:ring-offset-4 active:ring-offset-slate-800 focus:ring-2 focus:ring-green-600 focus:ring-offset-4 focus:ring-offset-slate-800 focus:outline-0 disabled:bg-slate-300 disabled:text-slate-600"
-                {{ $sending ?? 'disabled' }} placeholder="e.g. Lili is awake" />
-            @error('messageToSend') <div x-data="{ show: true }" x-show="show"
-                x-init="setTimeout(() => show = false, 5000)" class="block text-lg text-red-400 alert">{{ $message }}
-            </div>@enderror
+                placeholder="e.g. Lili is awake" />
+            @error('messageToSend')
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                class="block mb-12 text-lg text-red-400">
+                {{ $message }}
+            </div>
+            @enderror
             @if ($success)
             <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
-                class="block text-lg text-blue-400 alert">
+                class="block mb-12 text-lg text-blue-400">
                 Message sent!
             </div>
             @endif
         </div>
 
-        <div class="mb-20 space-y-4">
-            <span class="block text-xl text-slate-400">How many times to send</span>
-            <div class="flex justify-between">
+        <div class="mb-12 space-y-4">
+            <label class="block text-xl text-slate-400" for="sendNumOfTimes">How many times to send</label>
+            <div class="flex justify-between" id="sendNumOfTimes">
                 <button
                     class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 1 ? 'bg-slate-400' : 'bg-slate-500' }}"
                     type="button" wire:click="sendTimes(1)">1</button>
@@ -68,20 +74,28 @@
                     type="button" wire:click="sendTimes(5)">5</button>
             </div>
         </div>
-
+        <div wire:poll.20s="reset_tv_alive_status">
+            @if (!$tv_alive)
+            <template x-data="{ show: true }" x-if="show" x-init="setTimeout(() => show = false, 10000)">
+                <div class="block mb-12 text-lg text-red-400">
+                    <div>TV not available</div>
+                    <div>Could not send message</div>
+                </div>
+            </template>
+            @endif
+        </div>
         <button type="submit"
-            class="block w-full px-8 py-4 text-4xl font-bold transition border rounded text-slate-300 border-slate-400 bg-slate-700 hover:bg-slate-600 hover:border-slate-300 active:bg-slate-600 active:border-slate-300">
+            class="block w-full px-8 py-4 text-4xl font-bold transition border rounded text-slate-300 border-slate-400 bg-slate-700 hover:bg-slate-600 hover:border-slate-300 active:bg-slate-600 active:border-slate-300 disabled:bg-slate-300 disabled:text-slate-600">
             Send message to TV
         </button>
-        @error('messageToSend') <span class="block text-lg text-red-400 alert">{{ $errorWhenSending }}</span>@enderror
-
     </form>
     @else
     <div class="mb-12 space-y-4">
         <span class="block text-xl text-red-500">No TVs configured</span>
-        <div class="block text-xl text-slate-400">Please run
-            <pre class="inline ml-4 mr-4 text-slate-200">php artisan lg:first-time</pre> from the command-line to
-            configure your first TV
+        <div class="block text-xl text-slate-400">
+            Please run
+            <pre class="inline ml-4 mr-4 text-slate-200">php artisan lg:first-time</pre>
+            from the command-line to configure your first TV
         </div>
     </div>
     @endif

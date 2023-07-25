@@ -3,20 +3,19 @@
 namespace App\Http\Livewire;
 
 use App\Services\LGTVMessenger;
-use Exception;
 use Livewire\Component;
 
 class MessagePage extends Component
 {
+    public bool $tv_alive = true;
+
     public string $messageToSend;
 
     public array $tvList;
 
-    public string $errorWhenSending;
-
     public int $sendNumOfTimes = 1;
 
-    public $selectedTV = 0;
+    public int $selectedTVIndex;
 
     public bool $success = false;
 
@@ -26,16 +25,9 @@ class MessagePage extends Component
 
     public function mount()
     {
-        $tvs = config('lgtvs');
+        $this->getTVs();
 
-        if (! empty($tvs)) {
-            $this->tvList = $tvs;
-        }
-
-        $precanned = config('precanned');
-        if (! empty($precanned)) {
-            $this->precanned = $precanned;
-        }
+        $this->getPrecannedMessages();
     }
 
     public function sendMessage(LGTVMessenger $messenger)
@@ -44,20 +36,20 @@ class MessagePage extends Component
 
         $this->sending = true;
 
-        $selectedTV = $this->tvList[$this->selectedTV];
-        $messenger->setTVIP($selectedTV['ip']);
-        $messenger->setTVKey($selectedTV['key']);
+        $this->configureMessenger($messenger);
 
-        try {
-            for ($i = 0; $i < $this->sendNumOfTimes; $i++) {
-                $messenger->send($this->messageToSend);
-            }
-            $this->messageToSend = '';
-            $this->success = true;
-            $this->sending = false;
-        } catch (Exception $e) {
-            $this->errorWhenSending = $e->getMessage();
+        $this->tv_alive = $this->checkIsTVAlive($messenger);
+
+        if ($this->tv_alive) {
+            $this->sendMessages($messenger);
         }
+
+        $this->sending = false;
+    }
+
+    public function reset_tv_alive_status()
+    {
+        $this->tv_alive = true;
     }
 
     public function sendTimes(int $numOfTimes)
@@ -75,4 +67,62 @@ class MessagePage extends Component
         'sendNumOfTimes' => 'required|min:1|max:5|integer',
         'tvList' => 'required',
     ];
+
+    /**
+     * @return void
+     */
+    public function getPrecannedMessages(): void
+    {
+        $precanned = config('precanned');
+        if (!empty($precanned)) {
+            $this->precanned = $precanned;
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public function getTVs(): void
+    {
+        $tvs = config('lgtvs');
+
+        if (!empty($tvs)) {
+            $this->tvList = $tvs;
+            $this->selectedTVIndex = array_key_first($tvs);
+        }
+    }
+
+    /**
+     * @param LGTVMessenger $messenger
+     * @return void
+     * @throws \Exception
+     */
+    public function sendMessages(LGTVMessenger $messenger): void
+    {
+        for ($i = 0; $i < $this->sendNumOfTimes; $i++) {
+            $messenger->send($this->messageToSend);
+        }
+        $this->messageToSend = '';
+        $this->success = true;
+    }
+
+    /**
+     * @param LGTVMessenger $messenger
+     * @return bool
+     */
+    public function checkIsTVAlive(LGTVMessenger $messenger): bool
+    {
+        return $messenger->ping();
+    }
+
+    /**
+     * @param LGTVMessenger $messenger
+     * @return void
+     */
+    public function configureMessenger(LGTVMessenger $messenger): void
+    {
+        $selectedTV = $this->tvList[$this->selectedTVIndex];
+        $messenger->setTVIP($selectedTV['ip']);
+        $messenger->setTVKey($selectedTV['key']);
+    }
 }

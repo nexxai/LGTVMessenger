@@ -5,6 +5,8 @@ namespace Tests\Feature\Livewire;
 use App\Http\Livewire\MessagePage;
 use App\Services\LGTVMessenger;
 use Livewire\Livewire;
+use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -82,40 +84,53 @@ class MessengerTest extends TestCase
     #[Test]
     public function it_can_send_a_message(): void
     {
-        $spy = $this->spy(LGTVMessenger::class);
+        $mock = Mockery::mock(LGTVMessenger::class, function (MockInterface $mock) {
+            $mock->shouldReceive()
+                ->ping()
+                ->once()
+                ->andReturn(true)
+                ->shouldReceive()
+                ->setTVIP('127.0.0.1')
+                ->once()
+                ->shouldReceive()
+                ->setTVKey('abcd')
+                ->once();
+        });
 
         $test = new MessagePage();
         $test->messageToSend = 'Good message';
         $test->sendNumOfTimes = 1;
         $test->tvList = $this->tvList;
         $test->selectedTV = 0;
+        $test->host_alive = true;
 
-        $test->sendMessage($spy);
-
-        $spy->shouldHaveReceived()
-            ->setTVIP('127.0.0.1')
-            ->once();
-        $spy->shouldHaveReceived()
-            ->setTVKey('abcd')
-            ->once();
+        $test->sendMessage($mock);
     }
 
     #[Test]
     public function it_can_send_a_message_multiple_times(): void
     {
-        $spy = $this->spy(LGTVMessenger::class);
+        $mock = Mockery::mock(LGTVMessenger::class, function (MockInterface $mock) {
+            $mock->shouldReceive()
+                ->setTVIP('127.0.0.1')
+                ->shouldReceive()
+                ->setTVKey('abcd')
+                ->shouldReceive()
+                ->ping()
+                ->andReturn(true)
+                ->shouldReceive()
+                ->send('Good message')
+                ->twice();
+        });
 
         $test = new MessagePage();
         $test->messageToSend = 'Good message';
         $test->sendNumOfTimes = 2;
         $test->tvList = $this->tvList;
         $test->selectedTV = 0;
+        $test->host_alive = true;
 
-        $test->sendMessage($spy);
-
-        $spy->shouldHaveReceived()
-            ->send('Good message')
-            ->twice();
+        $test->sendMessage($mock);
     }
 
     #[Test]

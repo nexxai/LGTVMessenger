@@ -82,4 +82,22 @@ class LGTVMessengerTest extends TestCase
 
         $this->assertEquals("Test error output\n", $messenger->send($message));
     }
+
+    #[Test]
+    public function it_can_ping_an_ip_and_returns_true_if_the_host_is_up(): void
+    {
+        $messenger = new LGTVMessenger();
+        $messenger->ip = '127.0.0.1';
+
+        $this->assertTrue($messenger->ping());
+    }
+
+    #[Test]
+    public function it_can_ping_an_ip_and_returns_false_if_the_host_is_down(): void
+    {
+        $messenger = new LGTVMessenger();
+        $messenger->ip = '100.100.100.100';
+
+        $this->assertFalse($messenger->ping());
+    }
 }

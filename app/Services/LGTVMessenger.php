@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Process;
+use JJG\Ping;
 
 class LGTVMessenger
 {
@@ -19,6 +20,12 @@ class LGTVMessenger
     public function setTVKey($key)
     {
         $this->key = $key;
+    }
+
+    public function ping()
+    {
+        dump($this->isHostAlive($this->ip));
+        return $this->isHostAlive($this->ip);
     }
 
     public function send(string $message)
@@ -38,5 +45,13 @@ class LGTVMessenger
         $sendMessage = Process::run("{$exec} message.py -t {$this->ip} -m \"{$message}\" -k {$this->key}");
 
         return $sendMessage->errorOutput();
+    }
+
+    private function isHostAlive($ip): bool
+    {
+        $ping = new Ping($ip);
+        $ping->setTimeout(4);
+
+        return (bool) $ping->ping(true);
     }
 }
