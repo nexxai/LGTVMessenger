@@ -22,12 +22,19 @@ class MessagePage extends Component
 
     public bool $sending = false;
 
+    public $precanned = [];
+
     public function mount()
     {
         $tvs = config('lgtvs');
 
         if (! empty($tvs)) {
             $this->tvList = $tvs;
+        }
+
+        $precanned = config('precanned');
+        if (! empty($precanned)) {
+            $this->precanned = $precanned;
         }
     }
 

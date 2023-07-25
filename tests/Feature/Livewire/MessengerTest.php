@@ -125,4 +125,32 @@ class MessengerTest extends TestCase
             ->call('sendTimes', 4)
             ->assertSet('sendNumOfTimes', 4);
     }
+
+    #[Test]
+    public function if_there_are_no_precanned_messages_do_not_show_that_section(): void
+    {
+        config()->set('precanned', []);
+        Livewire::test(MessagePage::class)
+            ->assertDontSee('precanned');
+    }
+
+    #[Test]
+    public function if_there_are_configured_precanned_messages_show_that_section(): void
+    {
+        config()->set('precanned', [0 => 'Lili is awake']);
+        Livewire::test(MessagePage::class)
+            ->assertSee('precanned');
+    }
+
+    #[Test]
+    public function if_there_are_configured_precanned_messages_they_should_be_visible(): void
+    {
+        $message1 = 'Can you come upstairs';
+        $message2 = 'Check your phone';
+
+        config()->set('precanned', [0 => $message1, 1 => $message2]);
+        Livewire::test(MessagePage::class)
+            ->assertSee($message1)
+            ->assertSee($message2);
+    }
 }

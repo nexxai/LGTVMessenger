@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Services\ConfigMaintain;
+use App\Services\ModifyConfig;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class ConfigMaintainTest extends TestCase
+class ModifyConfigTest extends TestCase
 {
     #[Test]
     public function it_can_create_the_config_file_if_it_doesnt_exist(): void
@@ -17,8 +17,8 @@ class ConfigMaintainTest extends TestCase
             rename($config_path, $config_path_backup);
         }
 
-        $configMaintain = new ConfigMaintain();
-        $configMaintain->create_lgtvs_file();
+        $configMaintain = new ModifyConfig($config_path);
+        $configMaintain->create_blank_file();
 
         $this->assertTrue(file_exists($config_path));
 

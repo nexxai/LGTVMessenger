@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ConfigMaintain;
 use App\Services\CpExec;
+use App\Services\ModifyConfig;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
 
@@ -21,9 +21,10 @@ class FirstTimeSetup extends Command
             $this->components->info('.env file created');
         }
 
-        if (! file_exists(base_path().'/config/lgtvs.php')) {
-            $config = new ConfigMaintain();
-            $config->create_lgtvs_file();
+        $config_file_path = base_path().'/config/lgtvs.php';
+        if (! file_exists($config_file_path)) {
+            $config = new ModifyConfig($config_file_path);
+            $config->create_blank_file();
             $this->components->info('Config file created');
         }
 

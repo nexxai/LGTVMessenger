@@ -16,6 +16,22 @@
             </select>
         </div>
 
+        @if ($this->precanned)
+        <div class="mb-12 space-y-4 precanned">
+            <span class="block text-xl text-slate-400">Choose a saved message to send</span>
+            <select wire:model="messageToSend"
+                class="w-full px-2 py-2 mb-4 text-2xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 focus:outline-0">
+                <option selected="true" value="">Select a precanned message</option>
+                @foreach ($precanned as $key => $val)
+                <option value="{{ $val }}">{{ $val }}</option>
+                @endforeach
+            </select>
+            @error('precanned') <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                class="block text-lg text-red-400 alert">{{ $message }}
+            </div>@enderror
+        </div>
+        @endif
+
         <div class="mb-12 space-y-4">
             <span class="block text-xl text-slate-400">Enter text to send to TV</span>
             <input wire:model.defer="messageToSend" name="messageToSend"

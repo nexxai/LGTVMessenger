@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ConfigMaintain;
+use App\Services\ModifyConfig;
 use App\Services\PythonExec;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Process;
@@ -13,9 +13,15 @@ class AddTVKeyToConfig extends Command
 
     protected $description = 'Pair this app with your TV';
 
-    /**
-     * Execute the console command.
-     */
+    public string $config_file_path;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->config_file_path = base_path().'/config/lgtvs.php';
+    }
+
     public function handle()
     {
         $name = $this->ask('Friendly name for the TV');
@@ -44,7 +50,7 @@ class AddTVKeyToConfig extends Command
             'ip' => $ip,
         ];
 
-        $config = new ConfigMaintain();
+        $config = new ModifyConfig($this->config_file_path);
         $config->add($tvInstance);
 
         $this->components->info("Added TV '{$name}' to the configuration");

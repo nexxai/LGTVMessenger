@@ -18,4 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /config/lgtvs.php
+/config/precanned.php
 /public/aiowebostv/__pycache__
