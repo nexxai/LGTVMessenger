@@ -53,3 +53,5 @@ All PRs are welcome and very much appreciated.  I whipped this together in a sin
 ## Credits
 
 App icon by [Freepik - Flaticon](https://www.flaticon.com/free-icons/smart-tv)
+
+[AIOWEBOSTV](https://github.com/home-assistant-libs/aiowebostv) python package
