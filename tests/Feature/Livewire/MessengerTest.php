@@ -177,4 +177,14 @@ class MessengerTest extends TestCase
             ->assertSee($message1)
             ->assertSee($message2);
     }
+
+    #[Test]
+    public function it_can_reset_the_tvs_alive_status(): void
+    {
+        Livewire::test(MessagePage::class)
+            ->set('tv_alive', false)
+            ->call('reset_tv_alive_status')
+            ->assertSet('tv_alive', true);
+
+    }
 }
