@@ -13,8 +13,11 @@ class UpdateService extends Command
 
     public function handle()
     {
+        $this->components->info('Running: git pull');
         Process::run('git pull');
+        $this->components->info('Running: composer update');
         Process::run('composer update');
+        $this->components->info('Running: npm run build');
         Process::run('npm run build');
     }
 }
