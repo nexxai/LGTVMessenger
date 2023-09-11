@@ -1,6 +1,6 @@
 <div>
     <div class="max-w-2xl px-4 py-2 mx-auto mt-16 mb-4 lg:px-2 font-space-grotesk">
-        <div class="flex items-center mb-16 text-6xl font-semibold text-slate-200">
+        <div class="flex items-center mb-16 text-4xl font-semibold md:text-6xl text-slate-200">
             <img src="/smart-tv.png" alt="Image of a TV" class="w-12 h-12 mr-8" />
             <div>TV Messenger</div>
         </div>
@@ -54,27 +54,27 @@
                 <label class="block text-xl text-slate-400" for="sendNumOfTimes">How many times to send</label>
                 <div class="flex justify-between" id="sendNumOfTimes">
                     <button
-                        class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 1 ? 'bg-slate-400' : 'bg-slate-500' }}"
+                        class="px-6 py-6 md:px-8 md:py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 1 ? 'bg-slate-400' : 'bg-slate-500' }}"
                         type="button" wire:click="sendTimes(1)">
                         1
                     </button>
                     <button
-                        class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 2 ? 'bg-slate-400' : 'bg-slate-500' }}"
+                        class="px-6 py-6 md:px-8 md:py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 2 ? 'bg-slate-400' : 'bg-slate-500' }}"
                         type="button" wire:click="sendTimes(2)">
                         2
                     </button>
                     <button
-                        class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 3 ? 'bg-slate-400' : 'bg-slate-500' }}"
+                        class="px-6 py-6 md:px-8 md:py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 3 ? 'bg-slate-400' : 'bg-slate-500' }}"
                         type="button" wire:click="sendTimes(3)">
                         3
                     </button>
                     <button
-                        class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 4 ? 'bg-slate-400' : 'bg-slate-500' }}"
+                        class="px-6 py-6 md:px-8 md:py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 4 ? 'bg-slate-400' : 'bg-slate-500' }}"
                         type="button" wire:click="sendTimes(4)">
                         4
                     </button>
                     <button
-                        class="px-8 py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 5 ? 'bg-slate-400' : 'bg-slate-500' }}"
+                        class="px-6 py-6 md:px-8 md:py-8 rounded border border-slate-200 transition text-slate-200 {{ $sendNumOfTimes == 5 ? 'bg-slate-400' : 'bg-slate-500' }}"
                         type="button" wire:click="sendTimes(5)">
                         5
                     </button>
@@ -100,7 +100,7 @@
                 @endif
             </div>
             <button type="submit"
-                class="block w-full px-8 py-4 text-4xl font-bold transition border rounded text-slate-300 border-slate-400 bg-slate-700 hover:bg-slate-600 hover:border-slate-300 active:bg-slate-600 active:border-slate-300 disabled:bg-slate-300 disabled:text-slate-600">
+                class="block w-full px-8 py-4 text-2xl font-bold transition border rounded md:text-4xl text-slate-300 border-slate-400 bg-slate-700 hover:bg-slate-600 hover:border-slate-300 active:bg-slate-600 active:border-slate-300 disabled:bg-slate-300 disabled:text-slate-600">
                 Send message to TV
             </button>
         </form>
