@@ -41,7 +41,7 @@
                 <label for="messageToSend" class="block text-xl text-slate-400">Enter text to send to TV</label>
                 <input wire:model.defer="messageToSend" id="messageToSend"
                     class="w-full px-3 py-2 text-3xl border rounded bg-slate-200 hover:ring-2 hover:ring-green-600 hover:ring-offset-4 hover:ring-offset-slate-800 active:ring-2 active:ring-green-600 active:ring-offset-4 active:ring-offset-slate-800 focus:ring-2 focus:ring-green-600 focus:ring-offset-4 focus:ring-offset-slate-800 focus:outline-0 disabled:bg-slate-300 disabled:text-slate-600"
-                    placeholder="e.g. Lili is awake" />
+                    placeholder="e.g. Check your phone" />
                 @error('messageToSend')
                 <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
                     class="block mb-12 text-lg text-red-400">
